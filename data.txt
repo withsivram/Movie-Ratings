@@ -1,0 +1,65 @@
+[
+    {
+        "movieName": "The Shawshank Redemption",
+        "rating": 9.3,
+        "releaseYear": "1994",
+        "genre": "Drama",
+        "summary": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+    },
+    {
+        "movieName": "The Godfather",
+        "rating": 9.2,
+        "releaseYear": "1972",
+        "genre": "Crime, Drama",
+        "summary": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+    },
+    {
+        "movieName": "The Godfather: Part II",
+        "rating": 9.0,
+        "releaseYear": "1974",
+        "genre": "Crime, Drama",
+        "summary": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate."
+    },
+    {
+        "movieName": "The Dark Knight",
+        "rating": 9.0,
+        "releaseYear": "2008",
+        "genre": "Action, Crime, Drama",
+        "summary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    },
+    {
+        "movieName": "12 Angry Men",
+        "rating": 8.9,
+        "releaseYear": "1957",
+        "genre": "Drama",
+        "summary": "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence."
+    },
+    {
+        "movieName": "Schindler's List",
+        "rating": 8.9,
+        "releaseYear": "1993",
+        "genre": "Biography, Drama, History",
+        "summary": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."
+    },
+    {
+        "movieName": "The Lord of the Rings: The Return of the King",
+        "rating": 8.9,
+        "releaseYear": "2003",
+        "genre": "Action, Adventure, Drama",
+        "summary": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring."
+    },
+    {
+        "movieName": "Pulp Fiction",
+        "rating": 8.9,
+        "releaseYear": "1994",
+        "genre": "Crime, Drama",
+        "summary": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+    },
+    {
+        "movieName": "The Lord of the Rings: The Fellowship of the Ring",
+        "rating": 8.8,
+        "releaseYear": "2001",
+        "genre": "Action, Adventure, Drama",
+        "summary": "A meek hobbit of the Shire and eight companions set out on a journey to Mount Doom to destroy.
+    }
+]
