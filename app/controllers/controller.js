@@ -32,6 +32,7 @@ exports.me = async (req, res) => {
       return res.status(401).send({message: 'Unauthorized'});
     }
     const token = authHeader.split(' ')[1];
+    console.log(token)
     try {
       const payload = jwt.verify(token, 'mysecretkey');
       const user = await User.findById(payload.userId);
@@ -49,6 +50,8 @@ exports.createData = async (req, res) => {
     const token = authHeader.split(' ')[1];
     try {
         const payload = jwt.verify(token, 'mysecretkey');
+        console.log("payload successfull")
+        console.log(payload)
         const {movieName, rating} = req.body;
         const data = new Data({userId: payload.userId, movieName, rating});
         await data.save();
