@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
-const Data = require('../../config/database.config.js');
+const Data = require('../models/movie.model.js');
 const cache = require('../../cache.js');
 
 exports.register = async (req, res) => {
@@ -32,7 +32,6 @@ exports.me = async (req, res) => {
       return res.status(401).send({message: 'Unauthorized'});
     }
     const token = authHeader.split(' ')[1];
-    console.log(token)
     try {
       const payload = jwt.verify(token, 'mysecretkey');
       const user = await User.findById(payload.userId);
@@ -47,17 +46,19 @@ exports.createData = async (req, res) => {
     if (!authHeader) {
     return res.status(401).send({message: 'Unauthorized'});
 }
-    const token = authHeader.split(' ')[1];
-    try {
-        const payload = jwt.verify(token, 'mysecretkey');
-        console.log("payload successfull")
-        console.log(payload)
-        const {movieName, rating} = req.body;
-        const data = new Data({userId: payload.userId, movieName, rating});
-        await data.save();
-        res.send(data);
-    } catch (err) {
-        res.status(401).send({message: 'Unauthorized'});
+  const token = authHeader.split(' ')[1];
+  try {
+    const payload = jwt.verify(token, 'mysecretkey');
+    let data;
+    for(let i = 0; i < req.body.length; i++){
+      let {movieName, rating} = req.body[i];
+      data = new Data({userId: payload.userId, movieName, rating});
+      await data.save();
+      }
+      res.send(data);
+      console.log(data);
+  } catch (err) {
+      res.status(401).send({message: 'Unauthorized'});
     }
 };
   
@@ -92,6 +93,9 @@ exports.getData = async (req, res) => {
         .sort({[sortField]: sortOrder})
         .skip(startIndex)
         .limit(limit);
+      for(let i=0;i<data.length;i++){
+        data[i] = {movieName: data[i].movieName, rating: data[i].rating};
+      }
 
       // Store data in cache
       cache.set(cacheKey, data);
@@ -130,8 +134,8 @@ exports.updateData = async (req, res) => {
     const token = authHeader.split(' ')[1];
     try {
       const payload = jwt.verify(token, 'mysecretkey');
-      const {movieName, rating} = req.body;
-      const data = await Data.findOneAndUpdate({_id: req.params.id, userId: payload.userId}, {movieName, rating}, {new: true});
+      // const {movieName, rating} = req.body;
+      const data = await Data.findOneAndUpdate({movieName: req.params.id, userId: payload.userId}, {movieName:req.body.movieName, rating: req.body.rating}, {new: true});
       if (!data) {
         return res.status(404).send({message: 'Data not found'});
       }
@@ -149,7 +153,7 @@ exports.deleteData = async (req, res) => {
   const token = authHeader.split(' ')[1];
   try {
     const payload = jwt.verify(token, 'mysecretkey');
-    const data = await Data.findOneAndDelete({_id: req.params.id, userId: payload.userId});
+    const data = await Data.findOneAndDelete({movieName: req.params.id, userId: payload.userId});
     if (!data) {
       return res.status(404).send({message: 'Data not found'});
     }
